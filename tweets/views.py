@@ -3,6 +3,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse, Http404, JsonResponse
 
+from .forms import TweetForm
 from .models import Tweet
 
 
@@ -10,6 +11,17 @@ def home_view(request, *args, **kwargs):
 
     # return HttpResponse("<h1>Hello World</h1>")
     return render(request, "pages/home.html", context={}, status=200)
+
+
+def tweet_create_view(request, *args, **kwargs):
+    form = TweetForm(request.POST or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.save()
+        # reinitialize new blank form
+        form = TweetForm()
+
+    return render(request, 'components/form.html', context={"form": form})
 
 
 def tweet_list_view(request, *args, **kwargs):
