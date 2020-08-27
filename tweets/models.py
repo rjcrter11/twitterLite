@@ -15,6 +15,7 @@ class Tweet(models.Model):
     # Like SQL
     # id = models.AutoField(primary_key=True) -- Auto field from Django
     # users can have many tweets
+    parent = models.ForeignKey("self", null=True, on_delete=models.SET_NULL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     likes = models.ManyToManyField(
         User, related_name='tweet_user', blank=True, through=TweetLike)
