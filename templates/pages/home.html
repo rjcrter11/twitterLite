@@ -74,6 +74,9 @@
             } else if (xhr.status === 401) {
                 alert('You must login to tweet')
                 window.location.href = '/login'
+            } else if (xhr.status === 403) {
+                alert('You must be logged in to tweet')
+                window.location.href = '/login'
             }
 
         }
@@ -99,7 +102,7 @@
         xhr.open(method, url)
         xhr.onload = function () {
             const serverResponse = xhr.response
-            var listedItems = serverResponse.response
+            var listedItems = serverResponse
             var finalTweetStr = ""
             var i;
             for (i = 0; i < listedItems.length; i++) {
