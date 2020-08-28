@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { TweetsComponent } from './tweets'
+
+
+
+
+
+
+
 function App() {
-  const [tweets, setTweets] = useState([])
 
-  useEffect(() => {
-
-    setTweets()
-  }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -16,15 +19,11 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <TweetsComponent />
+        </div>
       </header>
+
     </div>
   );
 }
